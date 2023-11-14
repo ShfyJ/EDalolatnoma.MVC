@@ -1,0 +1,41 @@
+﻿@model EDalolatnoma.MVC.Models.WellStatus
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="card col-md-6">
+    <div class="card-header">
+       <h3 class="card-title">
+                 <i class="fa fa-edit"></i>
+                 Редактировать статуса
+                </h3> 
+    </div>
+     <div class="card-body">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="StatusName" class="control-label">Название</label>
+                <input asp-for="StatusName" class="form-control" />
+                <span asp-validation-for="StatusName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сақлаш" class="btn btn-primary" />
+            </div>
+        </form>
+
+</div>
+     <div class="card-footer">
+
+    <a asp-action="Index">Назад в список</a>
+</div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

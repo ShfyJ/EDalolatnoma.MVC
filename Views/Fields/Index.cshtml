@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EDalolatnoma.MVC.Models.Field>
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@using EDalolatnoma.MVC.Constants
+@{
+    ViewData["Title"] = "Список месторождение/площадь";
+    bool create = (AuthorizationService.AuthorizeAsync(User, Permissions.Company.Create)).Result.Succeeded;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title"> <i class="fas fa-globe-asia text-secondary"></i> @ViewData["Title"]</h3>
+                @if (create)
+               {
+                    <div class="card-tools">
+                    <a class="btn btn-outline-primary btn-sm" asp-action="Create"><i class="fas fa-plus-circle"></i> Добавить</a>
+                </div>
+               }
+                <!-- /.card-tools -->
+            </div>
+            <div class="card-body">
+                <table id="fieldsTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                           
+                            <th>
+                                @Html.DisplayNameFor(model => model.FieldName)
+                            </th>
+                            <th>
+                               Организация
+                            </th>
+
+                          
+                           <th>#</th>
+                         
+                            
+                        </tr>
+                    </thead>
+                    <tfoot style="display: table-header-group;">
+
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                   
+              
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

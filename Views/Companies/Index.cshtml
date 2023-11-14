@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EDalolatnoma.MVC.Models.Company>
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@using EDalolatnoma.MVC.Constants
+@{
+    ViewData["Title"] = "Организация";
+    bool create = (AuthorizationService.AuthorizeAsync(User, Permissions.Company.Create)).Result.Succeeded,
+         edit = (AuthorizationService.AuthorizeAsync(User, Permissions.Company.Edit)).Result.Succeeded,
+         delete = (AuthorizationService.AuthorizeAsync(User, Permissions.Company.Delete)).Result.Succeeded;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-city text-secondary"></i> Список организации</h3>
+             @if (create)
+            {
+                <div class="card-tools">
+                    <a class="btn btn-outline-primary btn-sm" asp-action="Create"><i class="fas fa-plus-circle"></i> Добавить</a>
+                </div>
+            }
+                
+                <!-- /.card-tools -->
+            </div>
+            <div class="card-body">
+
+                <table id="companyTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                           
+                            <th>
+                                @Html.DisplayNameFor(model => model.CompanyFullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CompanyShortName)
+                            </th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                           
+                            <tr>
+                                
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyFullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyShortName)
+                                </td>
+                                <td>
+                                    @if (edit)
+                                   {
+                                       <a asp-action="Edit" class="btn btn-outline-secondary" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                                   }
+                                   @if (delete)
+                                   {
+                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                                   }
+                                    
+                                   
+                                   
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

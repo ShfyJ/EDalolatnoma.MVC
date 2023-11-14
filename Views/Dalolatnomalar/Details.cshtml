@@ -1,0 +1,102 @@
+﻿@using System.Globalization;
+@model EDalolatnoma.MVC.Models.Dalolatnoma
+
+@{
+    ViewData["Title"] = "Details";
+    CultureInfo invC = new CultureInfo("uz-Cyrl-UZ", false);//CultureInfo.InvariantCulture;
+    CultureInfo.DefaultThreadCurrentCulture = invC;
+    CultureInfo.DefaultThreadCurrentUICulture = invC;
+}
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Далолатнома</h3>
+
+        <div class="card-tools">
+            @* <a class="btn btn-outline-primary btn-sm" asp-action="Create"><i class="fas fa-plus-circle"></i> Добавить</a> *@
+        </div>
+
+        <!-- /.card-tools -->
+    </div>
+    <div class="card-body">
+        <div class="col-md-12">
+            <p class="lead">  №@Model.ActNumber, @Model.ActDate.ToShortDateString()</p>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th style="width:30%">ID:</th>
+                            <td> @Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+                        <tr>
+                            <th>Етказиб берувчи</th>
+                            <td>@Html.DisplayFor(model => model.SellerCompany.CompanyFullName)</td>
+                        </tr>
+                        <tr>
+                            <th>Етказиб берувчи INN си</th>
+                            <td>@Html.DisplayFor(model => model.SellerCompany.Inn)</td>
+                        </tr>
+                        <tr>
+                            <th>Сотиб олувчи:</th>
+                            <td>@Html.DisplayFor(model => model.BuyerCompany.CompanyFullName)</td>
+                        </tr>
+                        <tr>
+                            <th>Сотиб олувчи INN си:</th>
+                            <td>@Html.DisplayFor(model => model.BuyerCompany.Inn)</td>
+                        </tr>
+                        <tr>
+                            <th>Шартнома рақами ва санаси:</th>
+                            <td> № @Html.DisplayFor(model => model.ContractNumber),  @Model.ContractDate.ToShortDateString()</td>
+                        </tr>
+                         <tr>
+                            <th>Газ узели:</th>
+                            <td> @Model.GasMeterNetwork</td>
+                        </tr>
+                        <tr>
+                            <th>Ҳисоблагич рақами:</th>
+                            <td> @Model.MeterNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Газ етказиб бериш даври:</th>
+                            <td> @Model.BeginDate.ToShortDateString() @Model.BeginDate.ToShortTimeString()  -  @Model.EndDate.ToShortDateString() @Model.EndDate.ToShortTimeString()</td>
+                        </tr>
+                        <tr>
+                            <th>Етказиб берилган газ миқдори:</th>
+                            <td> @Model.GasAmount</td>
+                        </tr>
+                        <tr>
+                            <th>Далолатнома яратилган вақт:</th>
+                            <td> @Model.CreateAt</td>
+                        </tr>
+                        <tr>
+                            <th>Далолатнома статуси:</th>
+                           
+                                @switch (@Model.Status)
+                                {
+                                    case DalolatnomaStatus.SendSuccessfully: <td>Солиқ тизимига юборилган</td>
+                                    break;
+                                case DalolatnomaStatus.Created:
+                                    <td>Янги</td>
+                                    break;
+                                default:<td>Ноъмалум</td>
+                                    break;
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div>
+            <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a> |
+            <a asp-action="Index">Назад в список</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

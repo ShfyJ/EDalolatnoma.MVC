@@ -1,0 +1,56 @@
+﻿@model EDalolatnoma.MVC.Models.Field
+
+@{
+    ViewData["Title"] = "Новая месторождения/площадь";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title"> <i class="fas fa-globe-asia"></i> Новая месторождения/площадь</h3>
+                <div class="card-tools">
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Company_id" class="control-label"></label>
+                                <select asp-for="Company_id" id="CompanyId" class="form-control" asp-items="ViewBag.Company_id">
+                                    <option value="">Выберите...</option>
+                                </select>
+                                <span asp-validation-for="Company" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FieldName" class="control-label"></label>
+                                <input asp-for="FieldName" class="form-control" />
+                                <span asp-validation-for="FieldName" class="text-danger"></span>
+                            </div>
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-success pull-right"><i class="fas fa-save"></i> Сохранить</button>
+                                <a asp-action="Index" class="btn btn-outline-secondary pull-left"><i class="fas fa-arrow-circle-left"></i> Назад в список</a>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="col-md-3"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

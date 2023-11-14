@@ -1,0 +1,52 @@
+﻿@model EDalolatnoma.MVC.Models.Company
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+
+
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card card-danger">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-exclamation-circle"></i> Вы уверены, что хотите удалить Организацию?</h3>
+                <div class="card-tools">
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <div class="card-body">
+                <div>
+                    <dl class="row">
+                        <dt class="col-sm-12">
+                            @Html.DisplayNameFor(model => model.CompanyFullName)
+                        </dt>
+                        <dd class="col-sm-12">
+                            @Html.DisplayFor(model => model.CompanyFullName)
+                        </dd>
+                        <dt class="col-sm-12">
+                            @Html.DisplayNameFor(model => model.CompanyShortName)
+                        </dt>
+                        <dd class="col-sm-12">
+                            @Html.DisplayFor(model => model.CompanyShortName)
+                        </dd>
+                    </dl>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        @Html.AntiForgeryToken()
+                        <div class="pull-right">
+<input type="submit" value="Удалить" class="btn btn-danger" /> |
+ <a asp-action="Index">Отменить</a>
+                        </div>
+                        
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>

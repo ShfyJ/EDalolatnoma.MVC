@@ -1,0 +1,66 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Регистрация пользователя";
+}
+
+
+<div class="card">
+    <div class="card-header text-center">
+        <h3 class="card-title"><i class="fas fa-users"></i> @ViewData["Title"]</h3>
+    </div>
+    <div class="card-body">
+
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Input.Company_id"></label>
+                        <select asp-for="Input.Company_id" class="form-control" asp-items="ViewBag.Company_id"></select>
+                        <span asp-validation-for="Input.Company_id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Input.FioName"></label>
+                        <input asp-for="Input.FioName" class="form-control" />
+                        <span asp-validation-for="Input.FioName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+               </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Input.Position"></label>
+                        <input asp-for="Input.Position" class="form-control" />
+                        <span asp-validation-for="Input.Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>  <div class="form-group">
+                <a class="btn btn-default" asp-controller="users" asp-action="Index"><i class="fa fa-solid fa-reply"></i></a>
+                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-check"></i> Регистрация</button>
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

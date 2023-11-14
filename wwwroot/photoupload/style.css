@@ -1,0 +1,56 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+h1 {
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 30px;
+    color: #222;
+}
+
+.profile-pic-div {
+
+
+}
+
+#photo {
+    height: 250px;
+    width: 200px;
+}
+
+/*#file {
+    display: none;
+}*/
+
+/*#uploadBtn {
+    height: 40px;
+    width: 200px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: rgb(255, 255, 255);
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+   
+}*/
+#uploadBtn {
+    height: 40px;
+    width: 200px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: rgb(255, 255, 255);
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+.uploadBtn {
+    visibility:hidden;
+}

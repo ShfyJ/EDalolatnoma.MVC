@@ -1,0 +1,48 @@
+﻿@model IEnumerable<EDalolatnoma.MVC.Models.WellStatus>
+
+@{
+    ViewData["Title"] = "Статусы скважины";
+}
+
+<div class="card col-md-12">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-info-circle text-primary"></i>
+            Статусы скважины
+        </h3>
+        <div class="card-tools">
+       
+         <a class="btn btn-outline-primary btn-sm" asp-action="Create"><i class="fas fa-plus-circle"></i> Добавить</a>
+        </div>
+
+    </div>
+    <div class="card-body">
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col-md-6">
+               Статус
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusName)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-secondary" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+

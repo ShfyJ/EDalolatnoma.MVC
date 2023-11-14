@@ -1,0 +1,53 @@
+﻿@model EDalolatnoma.MVC.Models.Company
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-edit"></i> Изменение данных</h3>
+                <div class="card-tools">
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <div class="card-body">
+                 <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CompanyFullName" class="control-label"></label>
+                <input asp-for="CompanyFullName" class="form-control" />
+                <span asp-validation-for="CompanyFullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyShortName" class="control-label"></label>
+                <input asp-for="CompanyShortName" class="form-control" />
+                <span asp-validation-for="CompanyShortName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Inn" class="control-label"></label>
+                <input asp-for="Inn" class="form-control" />
+                <span asp-validation-for="Inn" class="text-danger"></span>
+            </div>
+            <div class="form-group pull-right">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-success">Сохранить</button>
+                    <a asp-action="Index">Отменить</a>
+            </div>
+        </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

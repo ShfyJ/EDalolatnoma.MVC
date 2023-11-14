@@ -1,0 +1,53 @@
+﻿@model IEnumerable<EDalolatnoma.MVC.Models.Well>
+
+@{
+    ViewData["Title"] = "Список скважин";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title"> <i class="fab fa-gripfire text-primary"></i> @ViewData["Title"]</h3>
+                <div class="card-tools">
+                    <a class="btn btn-outline-primary btn-sm" asp-action="Create"><i class="fas fa-plus-circle"></i> Добавить</a>
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <div class="card-body">
+                <table id="wellsTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            
+                            <th>
+                                @Html.DisplayNameFor(model => model.WellName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Field)
+                            </th>
+                            <th>
+                                Организация
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.WellStatus)
+                            </th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                     <tfoot style="display: table-header-group;">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    
+                </tr>
+            </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

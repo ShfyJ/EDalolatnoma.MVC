@@ -1,0 +1,63 @@
+﻿@model EDalolatnoma.MVC.Models.Well
+
+@{
+    ViewData["Title"] = "Создание скважины";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fab fa-gripfire"></i> @ViewData["Title"]</h3>
+                <div class="card-tools">
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label class="control-label">Организация</label>
+                                <select id="CompanyId" class="form-control" asp-items="ViewBag.Company_id">
+                                    <option value="">Выберите...</option>
+                                </select>
+                                <span asp-validation-for="Field.Company_id" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Field_id" class="control-label"></label>
+                                <select id="FieldId" asp-for="Field_id" class="form-control select2bs4">
+                                    <option value="">Выберите...</option>
+                                </select>
+                                  <span asp-validation-for="Field_id" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="WellName" class="control-label"></label>
+                                <input asp-for="WellName" class="form-control" />
+                                <span asp-validation-for="WellName" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label asp-for="WellStatus_id" class="control-label"></label>
+                                <select asp-for="WellStatus_id" class="form-control" asp-items="ViewBag.WellStatus_id"></select>
+                            </div>
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-success pull-right"><i class="fas fa-save"></i> Сохранить</button>
+                                <a asp-action="Index" class="btn btn-outline-secondary pull-left"><i class="fas fa-arrow-circle-left"></i> Назад в список</a>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+       @{
+          await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+       
+}

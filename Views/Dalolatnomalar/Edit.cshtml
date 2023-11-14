@@ -1,0 +1,89 @@
+﻿@using System.Globalization;
+@model EDalolatnoma.MVC.Models.Dalolatnoma
+
+@{
+    ViewData["Title"] = "Edit";
+    CultureInfo invC = CultureInfo.InvariantCulture;
+    CultureInfo.DefaultThreadCurrentCulture = invC;
+    CultureInfo.DefaultThreadCurrentUICulture = invC;
+}
+
+<h1>Edit</h1>
+
+<h4>Dalolatnoma</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SellerCompanyId" class="control-label"></label>
+                <select asp-for="SellerCompanyId" class="form-control" asp-items="ViewBag.SellerCompanyId"></select>
+                <span asp-validation-for="SellerCompanyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BuyerCompanyId" class="control-label"></label>
+                <select asp-for="BuyerCompanyId" class="form-control" asp-items="ViewBag.BuyerCompanyId"></select>
+                <span asp-validation-for="BuyerCompanyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractDate" class="control-label"></label>
+                <input asp-for="ContractDate" class="form-control" />
+                <span asp-validation-for="ContractDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractNumber" class="control-label"></label>
+                <input asp-for="ContractNumber" class="form-control" />
+                <span asp-validation-for="ContractNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GasAmount" class="control-label"></label>
+                <input asp-for="GasAmount" class="form-control" />
+                <span asp-validation-for="GasAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActDate" class="control-label"></label>
+                <input asp-for="ActDate" class="form-control" />
+                <span asp-validation-for="ActDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActNumber" class="control-label"></label>
+                <input asp-for="ActNumber" class="form-control" />
+                <span asp-validation-for="ActNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeterNumber" class="control-label"></label>
+                <input asp-for="MeterNumber" class="form-control" />
+                <span asp-validation-for="MeterNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GasMeterNetwork" class="control-label"></label>
+                <input asp-for="GasMeterNetwork" class="form-control" />
+                <span asp-validation-for="GasMeterNetwork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BeginDate" class="control-label"></label>
+                <input asp-for="BeginDate" class="form-control" />
+                <span asp-validation-for="BeginDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

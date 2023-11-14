@@ -1,0 +1,157 @@
+﻿@using System.Globalization;
+@model EDalolatnoma.MVC.Models.Dalolatnoma
+
+@{
+    ViewData["Title"] = "Create";
+    CultureInfo invC = CultureInfo.InvariantCulture;
+    CultureInfo.DefaultThreadCurrentCulture = invC;
+    CultureInfo.DefaultThreadCurrentUICulture = invC;
+}
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title"><i class="fab fa-gripfire"></i> @ViewData["Title"]</h3>
+        <div class="card-tools">
+        </div>
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Create">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ActNumber" class="control-label">Номер акта</label>
+                                <input asp-for="ActNumber" class="form-control" />
+                                <span asp-validation-for="ActNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ActDate" class="control-label">Дата акта</label>
+                                <input type="date" asp-for="ActDate" class="form-control" />
+                                <span asp-validation-for="ActDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ContractNumber" class="control-label">Номер контракта</label>
+                                <input asp-for="ContractNumber" class="form-control" />
+                                <span asp-validation-for="ContractNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ContractDate" class="control-label">Дата контракта</label>
+                                <input asp-for="ContractDate" type="date" class="form-control" />
+                                <span asp-validation-for="ContractDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SellerCompanyId" class="control-label">Поставщик природного газа</label>
+                        <select asp-for="SellerCompanyId" class="form-control" asp-items="ViewBag.SellerCompanyId">
+                            <option value="">Выберите...</option>
+                        </select>
+                        <span asp-validation-for="SellerCompanyId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SellerCompanyId" class="control-label">ИНН Поставщика</label>
+                        <input id="sellerinn" disabled="disabled" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="BuyerCompanyId" class="control-label">Покупатель</label>
+                        <select asp-for="BuyerCompanyId" class="form-control" asp-items="ViewBag.BuyerCompanyId">
+                            <option value="">Выберите...</option>
+                        </select>
+                        <span asp-validation-for="BuyerCompanyId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SellerCompanyId" class="control-label">ИНН Покупателя</label>
+                        <input id="buyerinn" disabled="disabled" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="GasMeterNetwork" class="control-label">Узель учета газа</label>
+                        <input asp-for="GasMeterNetwork" class="form-control" />
+                        <span asp-validation-for="GasMeterNetwork" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="MeterNumber" class="control-label">Номер установленного счетчика учета газа</label>
+                        <input asp-for="MeterNumber" class="form-control" />
+                        <span asp-validation-for="MeterNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="BeginDate" class="control-label">Дата начало поставки природного газа</label>
+                                <input asp-for="BeginDate" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="BeginDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="EndDate" class="control-label">Дата окончание поставки природного газа</label>
+                                <input asp-for="EndDate" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="GasAmount" class="control-label">Объем переданного газа</label>
+                        <input asp-for="GasAmount"  class="form-control" />
+                        <span asp-validation-for="GasAmount" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-success pull-right"><i class="fas fa-save"></i> Сохранить</button>
+                <a asp-action="Index" class="btn btn-outline-secondary pull-left"><i class="fas fa-arrow-circle-left"></i> Назад в список</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+            $(function () {
+                $('input[name="datetimes"]').daterangepicker({
+                    timePicker: true,
+                    startDate: moment().startOf('hour'),
+                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale: {
+                        format: 'M/DD hh:mm A'
+                    }
+                });
+            });
+        </script>
+    }
+}

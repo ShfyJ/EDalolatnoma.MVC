@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+@{
+    int count = 0;
+}
+
+    <div class="card">
+    <div class="card-header">
+       <h3 class="card-title">
+                 <i class="fa fa-shield text-red"></i>
+                  Список ролей
+                </h3> 
+    </div>
+ <div class="card-body">
+  
+ <form method="post" asp-action="addrole" asp-controller="roles">
+      @*  <div class="input-group">
+            <input name="roleName" class="form-control w-25">
+            <span class="input-group-btn">
+                <button class="btn btn-info">Добавить новый роль</button>
+            </span>
+        </div>*@
+
+            <div class="input-group mb-3">
+                <input type="text" name="roleName" class="form-control">
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-primary">Добавить новый роль</button>
+                </div>
+            </div>
+
+
+    </form>
+    <table class="table table-hover" id="roleTable">
+        <thead>
+            <tr>
+                <th class="col-md-1">№</th>
+                <th class="col-md-4">
+                    Роли
+                </th>
+                
+
+                <th style="width:10%">
+                    Действия
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var role in Model)
+            {
+                count++;
+                <tr>
+                    <td>
+                   @count.
+                    </td>
+                    <td>
+                        @role.Name
+                    </td>
+                   
+                    <td class="text-left">
+                       @if (role.Name!="Администратор")
+                               {  <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Действия
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                               
+                                     <a class="dropdown-item"  asp-controller="Roles" asp-action="Edit" asp-route-Id="@role.Id">
+                                    <i class="fas fa-pencil-alt"></i> Изменить
+                                </a>
+                               
+
+                              
+                               @* <form class="d-inline">
+                                    <a class="dropdown-item"><i class="fas fa-trash-alt"></i> Удалить</a>
+                                </form>*@
+                                 <a asp-controller="Permission" asp-action="Index" asp-route-roleId="@role.Id" class="dropdown-item">
+                                        <i class="fas fa-wrench"></i> Управление разрешениями
+                                  </a>
+                               
+                            </div>
+                        </div>}
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+
+</div>
+     <div class="card-footer"></div>
+</div>
+
+ 
+   

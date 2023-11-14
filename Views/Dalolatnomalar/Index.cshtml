@@ -1,0 +1,87 @@
+﻿@model IEnumerable<EDalolatnoma.MVC.Models.Dalolatnoma>
+
+@{
+    ViewData["Title"] = "Далолатномалар";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title"> <i class="fas fa-globe-asia text-secondary"></i> Табиий газ тақсимотига оид далолатномалар</h3>
+                
+                    <div class="card-tools">
+                        <a class="btn btn-outline-primary btn-sm" asp-action="Create"><i class="fas fa-plus-circle"></i> Добавить</a>
+                    </div>
+               
+                <!-- /.card-tools -->
+            </div>
+            <div class="card-body">
+                <table id="dalolatnomaTable" class="table table-hover">
+                    <thead class="text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>
+                                Далолатнома
+                            </th>
+                            <th>
+                                Етказиб берувчи
+                            </th>
+                            <th>
+                                Харидор
+                            </th>
+
+                            <th>
+                                Газ ўлчаш тармоғи
+                            </th>
+                            <th>
+                               Газ миқдори
+                            </th>
+                            <th>
+                               Етказиб бериш даври
+                            </th>
+                            <th>
+                               Статуси
+                            </th>
+
+                            <th>#</th>
+
+
+                        </tr>
+                    </thead>
+                    <tfoot style="display: table-header-group;">
+
+                        <tr>
+                            <th></th>
+                           
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                           
+                            
+                            
+                        </tr>
+                    </tfoot>
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script src="~/js/datatable/dalolatnomaTable.js"></script>
+    }
+}
+
+

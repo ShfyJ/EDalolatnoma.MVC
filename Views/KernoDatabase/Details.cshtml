@@ -1,0 +1,161 @@
+﻿@model EDalolatnoma.MVC.Models.KernoData
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h4 class="card-tittle">Карта данных </h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-md-3 text-center">
+
+               <img src=@("/files/photo/"+Model.PhotoName) class="img-fluid mb-2" alt="red sample"> 
+            
+
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Организация</th>
+                                <td>@Html.DisplayFor(model => model.Well.Field.Company.CompanyShortName)</td>
+                            </tr>
+                            <tr>
+                                <th>Месторождение</th>
+                                <td>@Html.DisplayFor(model => model.Well.Field.FieldName)</td>
+                            </tr>
+                            <tr>
+                                <th>Скважина</th>
+                                <td>@Html.DisplayFor(model => model.Well.WellName)</td>
+                            </tr>
+                            <tr>
+                                <th style="width:40%">Регистрационный номер</th>
+                                <td>@Html.DisplayFor(model => model.Id)</td>
+                            </tr>
+                            <tr>
+                                <th>Интервал отбора керна, м</th>
+                                <td>от @Html.DisplayFor(model => model.Interval_1) до @Html.DisplayFor(model => model.Interval_2)</td>
+                            </tr>
+                            <tr>
+                                <th>Поднято керна, м</th>
+                                <td>@Html.DisplayFor(model => model.Core_raise)</td>
+                            </tr>
+                            <tr>
+                                <th>Дата отбора керна</th>
+                                <td>@Model.Date_Selection.ToLocalTime().ToShortDateString() г.</td>
+                            </tr>
+                            <tr>
+                                <th>Ф.И.О. ответственного за вынос керна</th>
+                                <td>@Html.DisplayFor(model => model.PersonName)</td>
+                            </tr>
+
+                            <tr>
+                                <th>Время добавления</th>
+                                <td>@Model.CreateAt.ToLocalTime().ToShortDateString(), @Model.CreateAt.ToLocalTime().ToShortTimeString()</td>
+                            </tr>
+
+                            <tr>
+                                <th>Ф.И.О. пользователя</th>
+                                <td>@Html.DisplayFor(model => model.CreateBy)</td>
+                            </tr>
+
+                            <tr>
+                                <th>Загруженные файлы</th>
+                                <td>
+                                    @foreach (var item in ViewBag.Documents.Files)
+                                    {
+                                        <div class="row">
+                                            <div class="col-sm-11">
+                                                <a asp-action="Download"
+                                               asp-route-filename="@item.Name" asp-route-id="@Model.Id">
+                                                    @item.Name
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+       <button id="btn1" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-danger" data-id="@Model.Id" data-fileName="@item.Name">
+                  <i class="fas fa-trash-alt"></i>
+                </button>                                
+                                            </div>
+                                            
+                                        </div>
+<p></p>
+                                    }
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <th>
+                                    Загрузка файлы
+                                </th>
+                                <td>
+                                    <form asp-action="AddFiles" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="id" value="@Model.Id" />
+                                        <input type="file" name="fileModel" multiple />
+                                        <button class="btn btn-sm btn-secondary" type="submit" title="загрузить"><i class="fa fa-cloud-upload"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <div>
+            <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a> |
+            <a asp-action="Index">Назад в список</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+      <div class="modal fade" id="modal-danger">
+        <div class="modal-dialog">
+          <div class="modal-content bg-danger">
+            <div class="modal-header">
+              <h4 class="modal-title">Предупреждении !</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Вы уверены, что хотите удалить файла? </p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Нет</button>
+              
+              <a id="deletef" class="btn btn-outline-light">Удалить</a>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      @section Scripts {
+    <script>
+         $("#btn1").click(function(){
+                          var newUrl="/KernoDatabase/DeleteFile/"+$(this).data("id")+"?fileName="+ $(this).data("filename")+"";
+             $("#deletef").attr("href", newUrl)
+
+             });
+
+$('img').zoomify();
+
+
+
+      </script>
+}
+      

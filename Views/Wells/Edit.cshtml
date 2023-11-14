@@ -1,0 +1,60 @@
+﻿@model EDalolatnoma.MVC.Models.Well
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-edit"></i> Изменение данных</h3>
+                <div class="card-tools">
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <div class="card-body">
+
+                <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="WellName" class="control-label"></label>
+                <input asp-for="WellName" class="form-control" />
+                <span asp-validation-for="WellName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Field_id" class="control-label"></label>
+                <select asp-for="Field_id" class="form-control" asp-items="ViewBag.Field_id"></select>
+                <span asp-validation-for="Field_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WellStatus_id" class="control-label"></label>
+                <select asp-for="WellStatus_id" class="form-control" asp-items="ViewBag.WellStatus_id"></select>
+                <span asp-validation-for="WellStatus_id" class="text-danger"></span>
+            </div>
+
+            <div class="form-group pull-right">
+                @Html.AntiForgeryToken()  
+                
+                <a asp-action="Index">Отменить</a> 
+                <button type="submit" class="btn btn-success ">Сохранить</button>
+                  
+            </div>
+        </form>
+
+               
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
